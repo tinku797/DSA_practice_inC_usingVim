@@ -61,7 +61,7 @@ scanf("%d",&x[j]);
 }
 
 resultForBubbleSort = bubbleSort(x,size,sizeof(int), intComparator);
-if(resultforBubbleSort !=1)
+if(resultForBubbleSort !=1)
 {
 printf("Unable to sort");
 return 0;

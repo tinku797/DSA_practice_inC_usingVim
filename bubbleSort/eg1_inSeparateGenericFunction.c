@@ -30,6 +30,7 @@ f++;
 }
 m--;
 }
+free(v);
 return 1;
 }
 
@@ -64,6 +65,7 @@ resultForBubbleSort = bubbleSort(x,size,sizeof(int), intComparator);
 if(resultForBubbleSort !=1)
 {
 printf("Unable to sort");
+free(x);
 return 0;
 }
 
@@ -71,5 +73,6 @@ for(j=0;j<size;j++)
 {
 printf("%d\n",x[j]);
 }
+free(x);
 return 0;
 }

@@ -4,12 +4,12 @@ void bubbleSort(int*x, int size)
 {
 int m = size - 2;
 //printf("Size of x is %d\n",m);
-while(m>0)
+while(m>=0)
 {
 int e =0;
 int f =1;
 int temp;
-while(e<m)
+while(e<=m)
 {
 if(x[e]>x[f])
 {

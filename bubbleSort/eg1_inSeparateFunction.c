@@ -49,5 +49,6 @@ for(j=0;j<size;j++)
 {
 printf("%d\n",x[j]);
 }
+free(x);
 return 0;
 }
