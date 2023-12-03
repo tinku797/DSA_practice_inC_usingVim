@@ -54,7 +54,7 @@ int studentComparator(void* stud1, void* stud2)
 {
 struct student* student1 = (struct student*) stud1;
 struct student* student2 = (struct student*) stud2;
-return (student1->name)-(student2->name);
+return (student1->rollNumber)-(student2->rollNumber);
 
 }
 
@@ -75,9 +75,9 @@ int j;
 for(j=0;j<size;j++)
 {
 printf("Enter the roll no of the student: ");
-scanf("%d",student[j].rollNumber);
+scanf("%d",&student[j].rollNumber);
 printf("Enter the name of the student: ");
-scanf("%s",student[j].name);
+scanf("%s",&student[j].name);
 }
 
 resultForBubbleSort = bubbleSort(student,size,sizeof(struct student), studentComparator);
@@ -90,7 +90,7 @@ return 0;
 
 for(j=0;j<size;j++)
 {
-printf("%d %s", student[j].rollNumber, student[j].name);
+printf("%d %s\n", student[j].rollNumber, student[j].name);
 }
 free(student);
 return 0;
