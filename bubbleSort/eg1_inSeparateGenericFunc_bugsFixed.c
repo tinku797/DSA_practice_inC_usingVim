@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//this function is not really generic as it takes as parameter not a void* , but an int*
-//hence change it to void*
-int bubbleSort(int*x, int size, int elementSize, int (*func)(void* a, void* b))
+int bubbleSort(void* x, int size, int elementSize, int (*func)(void* a, void* b))
 {
 int m = size - 2;
 void* v = malloc(elementSize);
@@ -20,13 +18,14 @@ int f =1;
 int temp;
 while(e<=m)
 {
-// change this to func(x+(elementSize*e),x+(elementSize*f)), as x should be a void* pointer,  and hence the pointer arithmetic will increment by only one byte. Or just create new void* pointer variables, and store the expression in them.
-int bool = func(&x[e], &x[f]);
+void* ptr1 = x+(elementSize*e);
+void* ptr2 = x+(elementSize*f);
+int bool = func(ptr1, ptr2);
 if(bool > 0)
 {
-memcpy(v,&x[e],elementSize);		//change this to memcpy(v,(const void*)ptr1,elementSize);
-memcpy(&x[e],&x[f],elementSize);	//change this to memcpy(ptr1,(const void*)ptr2,elementSize);
-memcpy(&x[f],v,elementSize);		//change this to memcpy(ptr2,(const void*)v,elementSize);
+memcpy(v,(const void*)ptr1,elementSize);
+memcpy(ptr1,(const void*)ptr2,elementSize);	
+memcpy(ptr2,(const void*)v,elementSize);		
 }
 e++;
 f++;
