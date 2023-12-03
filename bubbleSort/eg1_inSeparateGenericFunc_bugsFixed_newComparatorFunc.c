@@ -50,12 +50,19 @@ int* ptr2 = (int*)b;
 return *ptr1-*ptr2;
 }
 
-int studentComparator(void* stud1, void* stud2)
+int studentComparator_byRollNumber(void* stud1, void* stud2)
 {
 struct student* student1 = (struct student*) stud1;
 struct student* student2 = (struct student*) stud2;
 return (student1->rollNumber)-(student2->rollNumber);
 
+}
+
+int studentComparator_byName(void* stud1, void* stud2)
+{
+struct student* student1 = (struct student*) stud1;
+struct student* student2 = (struct student*) stud2;
+return strcmp(student1->name,student2->name);
 }
 
 int main()
@@ -80,7 +87,7 @@ printf("Enter the name of the student: ");
 scanf("%s",&student[j].name);
 }
 
-resultForBubbleSort = bubbleSort(student,size,sizeof(struct student), studentComparator);
+resultForBubbleSort = bubbleSort(student,size,sizeof(struct student), studentComparator_byName);
 if(resultForBubbleSort !=1)
 {
 printf("Unable to sort");

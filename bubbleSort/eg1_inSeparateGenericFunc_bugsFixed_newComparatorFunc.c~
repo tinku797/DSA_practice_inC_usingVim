@@ -50,12 +50,19 @@ int* ptr2 = (int*)b;
 return *ptr1-*ptr2;
 }
 
-int studentComparator(void* stud1, void* stud2)
+int studentComparator_byRollNumber(void* stud1, void* stud2)
 {
 struct student* student1 = (struct student*) stud1;
 struct student* student2 = (struct student*) stud2;
 return (student1->rollNumber)-(student2->rollNumber);
 
+}
+
+int studentComparator_byName(void* stud1, void* stud2)
+{
+struct student* student1 = (struct student*) stud1;
+struct student* student2 = (struct student*) stud2;
+return strcmp(student1->name,student2->name);
 }
 
 int main()
@@ -90,7 +97,7 @@ return 0;
 
 for(j=0;j<size;j++)
 {
-printf("%d %s", student[j].rollNumber, student[j].name);
+printf("%d %s\n", student[j].rollNumber, student[j].name);
 }
 free(student);
 return 0;
