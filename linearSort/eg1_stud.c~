@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct student
+{
+int rollNum;
+char name[20];
+}
+
+int studCompByRollNum(void* student1, void* student2)
+{
+struct student* stud1 = (struct student*)student1;
+struct student* stud2 = (struct student*)student2;
+return (stud1->rollNum)-(stud2->rollNum);
+}
+
+int studCompByName(void* student1, void* student2)
+{
+struct student* stud1 = (struct student*)student1;
+struct student* stud2 = (struct student*)student2;
+return strcmp(stud1->name,stud2->name);
+}
+
+int intComparator(void* num1, void* num2)
+{
+int* a = (int*)num1;
+int* b = (int*)num2;
+return (*a)-(*b);
+}
+
+int linearSort(void* x, int size, int elementSize, int (*func)(void* a, void* b))
+{
+
+void* temp = malloc(elementSize);
+if(temp == NULL)
+{
+printf("Unable to allocate memory");
+return -1;
+}
+
+// linear sort code
+int e = 0;
+while(e<=size-2)
+{
+int f = e+1;
+while(f<=size-1)
+{
+void* ptr1 = x + (elementSize*e);
+void* ptr2 = x + (elementSize*f);
+if(func(ptr1,ptr2) > 0)
+{
+memcpy(temp,ptr1,elementSize);
+memcpy(ptr1,ptr2,elementSize);
+memcpy(ptr2,temp,elementSize);
+}
+f++;
+}
+e++;
+}
+free(temp);
+return 1;
+}
+
+int main()
+{
+// data entry code
+//int ptr2arr[5] = {4,-2,1,3,0};
+int size;
+int j;
+int resultOfLinearSort;
+printf("Enter the size of array: ");
+scanf("%d",&size);
+struct student* ptr2arr = (struct student*)malloc(sizeof(struct student)*size);	
+if(ptr2arr == NULL)
+{
+printf("Unable to allocate an integer array of size %d\n",size);
+return 0;
+}
+
+for(j=0;j<size;j++)
+{
+printf("Enter the roll no: ");
+scanf("%d",&(ptr2arr[j].rollNum));
+printf("Enter the name: ");
+scanf("%s",&(ptr2arr[j].name));
+}
+
+resultOfLinearSort = linearSort(ptr2arr,size,sizeof(struct student),studCompByName);
+if(resultOfLinearSort != 1)
+{
+printf("Unable to sort");
+return 0;
+}
+
+for(j=0;j<size;j++)
+{
+printf("%d %s\n",ptr2arr[j].rollNum,ptr2arr[j].name);
+}
+free(ptr2arr);
+return 0;
+}
