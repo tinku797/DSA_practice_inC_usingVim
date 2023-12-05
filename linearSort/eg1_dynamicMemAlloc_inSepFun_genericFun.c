@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int intComparator(void* num1, void* num2)
+{
+int* a = (int*)num1;
+int* b = (int*)num2;
+return (*a)-(*b);
+}
+
+int linearSort(void* x, int size, int elementSize, int (*func)(void* a, void* b))
+{
+
+void* temp = malloc(elementSize);
+if(temp == NULL)
+{
+printf("Unable to allocate memory");
+return -1;
+}
+
+// linear sort code
+int e = 0;
+while(e<=size-2)
+{
+int f = e+1;
+while(f<=size-1)
+{
+void* ptr1 = x + (elementSize*e);
+void* ptr2 = x + (elementSize*f);
+if(func(ptr1,ptr2) > 0)
+{
+memcpy(temp,ptr1,elementSize);
+memcpy(ptr1,ptr2,elementSize);
+memcpy(ptr2,temp,elementSize);
+}
+f++;
+}
+e++;
+}
+
+free(temp);
+return 1;
+}
+int main()
+{
+// data entry code
+//int ptr2arr[5] = {4,-2,1,3,0};
+int size;
+int j;
+int resultOfLinearSort;
+printf("Enter the size of array: ");
+scanf("%d",&size);
+int* ptr2arr = (int*)malloc(sizeof(int)*size);	//sizeof(int) will be changed to sizeof(struct student) in the next example
+if(ptr2arr == NULL)
+{
+printf("Unable to allocate an integer array of size %d\n",size);
+return 0;
+}
+
+for(j=0;j<size;j++)
+{
+printf("Enter a number: ");
+scanf("%d",&ptr2arr[j]);
+}
+
+resultOfLinearSort = linearSort(ptr2arr,size,sizeof(int),intComparator);
+if(resultOfLinearSort != 1)
+{
+printf("Unable to sort");
+return 0;
+}
+
+for(j=0;j<size;j++)
+{
+printf("%d\n",ptr2arr[j]);
+}
+free(ptr2arr);
+return 0;
+}
