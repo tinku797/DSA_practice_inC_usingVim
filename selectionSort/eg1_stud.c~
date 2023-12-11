@@ -1,6 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+struct student
+{
+int rollNumber;
+char name[20];
+};
+
+int studCompByRoll(void* a, void* b)
+{
+struct student* stud1 = (struct student*)a;
+struct student* stud2 = (struct student*)b;
+return (stud1->rollNumber) - (stud2->rollNumber);
+}
+
+int studCompByName(void* a, void* b)
+{
+struct student* stud1 = (struct student*)a;
+struct student* stud2 = (struct student*)b;
+return strcmp(stud1->name,stud2->name);
+}
+
 int intComparator(void* a, void*b)
 {
 int* num1 = (int*)a;
@@ -61,7 +82,7 @@ if(size<=0)
 printf("Entered requirement is invalid");
 return 0;
 }
-int* ptr2arr = (int*)malloc(sizeof(int)*size);
+struct student* ptr2arr = (struct student*)malloc(sizeof(struct student)*size);
 if(ptr2arr == NULL)
 {
 printf("Cannot allocate memory for %d integers",size);
@@ -69,11 +90,13 @@ return 0;
 }
 for(i=0;i<size;i++)
 {
-printf("Enter a number: ");
-scanf("%d",&ptr2arr[i]);
+printf("Enter a roll number of the student: ");
+scanf("%d",&(ptr2arr[i].rollNumber));
+printf("Enter the name of the student: ");
+scanf("%s", &(ptr2arr[i].name));
 }
 
-resultOfSelectionSort = selectionSort(ptr2arr, size, sizeof(int), intComparator);
+resultOfSelectionSort = selectionSort(ptr2arr, size, sizeof(struct student), studCompByRoll);
 if(resultOfSelectionSort != 1)
 {
 printf("Unable to sort");
@@ -84,7 +107,7 @@ return 0;
 printf("Sorted array is-\n");
 for(i=0;i<size;i++)
 {
-printf("%d\n",ptr2arr[i]);
+printf("%d %s\n",ptr2arr[i].rollNumber, ptr2arr[i].name);
 }
 
 free(ptr2arr);
