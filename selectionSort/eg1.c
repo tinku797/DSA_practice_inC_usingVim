@@ -43,11 +43,14 @@ ptr2arr[e] = ptr2arr[min];
 ptr2arr[min] = temp;
 e++;
 }
+
 //code to print sorted array
 printf("Sorted array is-\n");
 for(i=0;i<size;i++)
 {
 printf("%d\n",ptr2arr[i]);
 }
+
+free(ptr2arr);
 return 0;
 }
