@@ -5,7 +5,7 @@
 typedef struct __node
 {
 int data;
-struct node* next;
+struct __node* next;
 }node;
 
 typedef struct __stack
@@ -48,6 +48,7 @@ else return 0;
 
 int main()
 {
+//remember that we cannot initialize the member variables of a structure, at the time of definition, as those variables don't exist yet.
 stack s1;
 s1.top = NULL;
 s1.size = 0;
