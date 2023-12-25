@@ -2,6 +2,19 @@
 #include<stdlib.h>
 #include<string.h>
 
+struct student
+{
+int rollno;
+char name[20];
+};
+
+int studCompByRollno(void*a, void*b)
+{
+struct student* stud1 = (struct student*)a;
+struct student* stud2 = (struct student*)b;
+return (stud1->rollno)-(stud2->rollno);
+}
+
 int intComp(void*a, void*b)
 {
 int*num1 = (int*)a;
@@ -59,21 +72,23 @@ int i;
 int resultOfQS;
 printf("Enter your requirement: ");
 scanf("%d",&req);
-int* ptr2arr = (int*)malloc(sizeof(int)*req);
+struct student* ptr2arr = (struct student*)malloc(sizeof(int)*req);
 if(ptr2arr == NULL)
 {
-printf("Cannot allocate memory for %d integers\n",req);
+printf("Cannot allocate memory for %d students\n",req);
 return 0;
 }
 
 for(i=0;i<req;i++)
 {
-printf("Enter a number: ");
-scanf("%d",&ptr2arr[i]);
+printf("Enter a roll number: ");
+scanf("%d",&(ptr2arr[i].rollno));
+printf("Enter a name: ");
+scanf("%s",&(ptr2arr[i].name));
 }
 
 //quickSort((void)ptr2arr, req, sizeof(int), intComparator);
-resultOfQS = quickSort(ptr2arr, 0, req-1, sizeof(int), intComp);
+resultOfQS = quickSort(ptr2arr, 0, req-1, sizeof(struct student), studCompByRollno);
 if(resultOfQS !=1)
 {
 printf("Cannot sort\n");
@@ -82,7 +97,7 @@ return 0;
 
 for(i=0;i<req;i++)
 {
-printf("%d\n",ptr2arr[i]);
+printf("%d %s\n",ptr2arr[i].rollno,ptr2arr[i].name);
 }
 return 0;
 }
