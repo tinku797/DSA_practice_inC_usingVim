@@ -85,11 +85,11 @@ int ub = poppedElement[1];
 int pp = partition(x,lb,ub, es,func);
 if(lb<pp-1)
 {
-partition(x,lb,pp-1,es,func);
+push(lb,pp-1);
 }
 if(pp+1<ub)
 {
-partition(x,pp+1,ub,es,func);
+push(pp+1,ub);
 }
 }
 

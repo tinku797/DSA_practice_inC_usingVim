@@ -117,7 +117,7 @@ scanf("%d",&ptr2arr[i]);
 }
 
 //quickSort((void)ptr2arr, req, sizeof(int), intComparator);
-resultOfQS = quickSort(ptr2arr, 0, req-1, sizeof(struct student), intComp);
+resultOfQS = quickSort(ptr2arr, 0, req-1, sizeof(int), intComp);
 if(resultOfQS !=1)
 {
 printf("Cannot sort\n");
@@ -126,7 +126,7 @@ return 0;
 
 for(i=0;i<req;i++)
 {
-printf("%d",ptr2arr[i]);
+printf("%d\n",ptr2arr[i]);
 }
 return 0;
 }
