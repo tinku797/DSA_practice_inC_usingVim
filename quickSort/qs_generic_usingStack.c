@@ -53,7 +53,7 @@ return f;
 
 int quickSort(void* x,int lb, int ub, int es, int (*func)(void*a, void*b))
 {
-//creating stack code
+//creating a makeshift stack
 int size = 1000;
 int stackArr[size][2];
 int top = size;
