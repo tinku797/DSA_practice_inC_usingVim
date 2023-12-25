@@ -8,9 +8,8 @@ int f = ub;
 
 while(e<f)
 {
-e++;
-while(x[e]<x[lb] && e<=ub) e++;
-while(x[f]>=x[lb] && f>=lb) f--;
+while(x[e]<=x[lb] && e<ub) e++;
+while(x[f]>x[lb]) f--;
 if(e<f)
 {
 //swap(x[e],x[f]);
@@ -64,7 +63,7 @@ scanf("%d",&ptr2arr[i]);
 }
 
 //quickSort((void)ptr2arr, req, sizeof(int), intComparator);
-quickSort(ptr2arr, 0, req-1);
+quickSort(ptr2arr, 3, req-2);
 
 for(i=0;i<req;i++)
 {
