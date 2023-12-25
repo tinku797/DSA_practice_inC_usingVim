@@ -4,7 +4,7 @@
 
 typedef struct __node
 {
-int data;
+void* ptr2data;
 struct __node* next;
 }node;
 
@@ -12,9 +12,17 @@ typedef struct __stack
 {
 node* top;
 int size;
+int elementSize;
 }stack; 
 
-void push(int data,stack*s)
+void init(stack*s,int elementSize)
+{
+s->top = NULL;
+s->size = 0;
+s->elementSize = elementSize;
+}
+
+void push(void* ptr2data,stack*s)
 {
 node* temp = (node*)malloc(sizeof(node));
 if(temp == NULL)
@@ -23,21 +31,21 @@ printf("Unable to allocate memory to push new data into the stack\n");
 }
 else
 {
-temp->data = data;
+temp->ptr2data = ptr2data;
 temp->next = s->top;
 s->top = temp;
 s->size++;
 }
 }
 
-int pop(stack*s)
+void* pop(stack*s)
 {
-int data = s->top->data;
+void* ptr2data = s->top->ptr2data;
 node* temp = s->top;
 s->top = s->top->next;
 free(temp);
 s->size--;
-return data;
+return ptr2data;
 }
 
 int isEmpty(stack*s)
@@ -50,26 +58,24 @@ int main()
 {
 //remember that we cannot initialize the member variables of a structure, at the time of definition, as those variables don't exist yet.
 stack s1;
-s1.top = NULL;
-s1.size = 0;
+init(&s1,sizeof(int));
 
-
-//pushing data into the stack now
-for(int i =100;i<999;i++)
-{
-push(i,&s1);
-}
+int x = 241;
+int y = 421;
+push(&x,&s1);
+push(&y,&s1);
 
 /*
 for(int i=0;i<899;i++)
 {
-printf("Popped data from stack: %d\n",pop(&s1));
+printf("Popped data from stack: %d\n",*(pop(&s1)));
 }
 */
 
 while(!isEmpty(&s1))
 {
-printf("Popped data from stack:%d\n",pop(&s1));
+int data = *(int*)pop(&s1);
+printf("Popped data from stack:%d\n",data);
 }
 
 return 0;

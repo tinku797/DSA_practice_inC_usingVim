@@ -14,6 +14,12 @@ node* top;
 int size;
 }stack; 
 
+void init(stack*s)
+{
+s->top = NULL;
+s->size = 0;
+}
+
 void push(int data,stack*s)
 {
 node* temp = (node*)malloc(sizeof(node));
@@ -50,9 +56,7 @@ int main()
 {
 //remember that we cannot initialize the member variables of a structure, at the time of definition, as those variables don't exist yet.
 stack s1;
-s1.top = NULL;
-s1.size = 0;
-
+init(&s1);
 
 //pushing data into the stack now
 for(int i =100;i<999;i++)
