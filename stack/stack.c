@@ -50,9 +50,16 @@ for(int i =100;i<999;i++)
 push(i);
 }
 
+/*
 for(int i=0;i<899;i++)
 {
 printf("Popped data from stack: %d\n",pop());
+}
+*/
+
+while(!isEmpty())
+{
+printf("Popped data from stack:%d\n",pop());
 }
 
 return 0;
