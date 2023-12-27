@@ -103,7 +103,7 @@ void* data;
 int success, errorno;
 pop(&s1,&data,&success,&errorno);
 printf("success: %d, errrorno: %d\n",success,errorno);
-printf("%d\n",*(int*)data);
+printf("popped data:%d\n",*(int*)data);
 }
 
 return 0;

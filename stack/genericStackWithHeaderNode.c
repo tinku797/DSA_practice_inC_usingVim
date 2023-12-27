@@ -71,7 +71,7 @@ if(errorno != NULL) *errorno = 100;  //errorno 100 for pop(), could be set in do
 }
 else
 {
-returnedPtr2data = NULL;
+*returnedPtr2data = NULL;
 // *success = 0; --not really needed as *success is already set to 0 by default above.
 if(errorno != NULL) *errorno = 1;  //errorno 1 for pop(), could be set to in documentation to - stack is empty, hence cannot pop.
 }
