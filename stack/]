@@ -54,7 +54,7 @@ else return 0;
 }
 
 //you have to use memcpy in pop, to return the data. Maybe not.
-void pop(stack*s,void** returnedPtr2data,int* success,int* errorno)  //could even change int* success and int* errorno to unsigned int* success, and unsigned int* errorno
+void pop(stack*s,void* returnedPtr2data,int* success,int* errorno)  //could even change int* success and int* errorno to unsigned int* success, and unsigned int* errorno
 {
 if(success != NULL) *success = 0;  //by default, assumed unsuccessful.
 if(errorno != NULL) *errorno = 0;  //errorno 0 for pop(), could be set in documentation to - full function execution could not be completed.
@@ -65,9 +65,10 @@ node* temp = s->top;
 s->top = s->top->next;
 free(temp);
 s->size--;
-*returnedPtr2data = ptr2data;
+returnedPtr2data = ptr2data;
 if(success != NULL) *success = 1;
 if(errorno != NULL) *errorno = 100;  //errorno 100 for pop(), could be set in doc to - no error, operation successful.
+printf("%d",*(int*)returnedPtr2data);
 }
 else
 {
@@ -97,13 +98,15 @@ printf("Popped data from stack: %d\n",*(pop(&s1)));
 }
 */
 
+printf("pushed data\n");
+
 while(!isEmpty(&s1))
 {
-void* data;
+int* data;
 int success, errorno;
 pop(&s1,&data,&success,&errorno);
 printf("success: %d, errrorno: %d\n",success,errorno);
-printf("popped data:%d\n",*(int*)data);
+printf("%d\n",*data);
 }
 
 return 0;
