@@ -7,8 +7,11 @@ init(&s1,sizeof(int));
 
 int x = 241;
 int y = 421;
-push(&s1,&x,NULL,NULL);
-push(&s1,&y,NULL,NULL);
+int success, errorno;
+push(&s1,&x,&success,&errorno);
+printf("success: %d, errorno: %d\n",success,errorno);
+push(&s1,&y,&success,&errorno);
+printf("success: %d, errorno: %d\n",success,errorno);
 
 /*
 for(int i=0;i<899;i++)
@@ -19,11 +22,10 @@ printf("Popped data from stack: %d\n",*(pop(&s1)));
 
 while(!isEmpty(&s1))
 {
-void* data;
-int success, errorno;
+int data;
 pop(&s1,&data,&success,&errorno);
-printf("success: %d, errrorno: %d\n",success,errorno);
-printf("popped data:%d\n",*(int*)data);
+printf("success: %d, errorno: %d\n",success,errorno);
+printf("popped data:%d\n",data);
 }
 
 return 0;

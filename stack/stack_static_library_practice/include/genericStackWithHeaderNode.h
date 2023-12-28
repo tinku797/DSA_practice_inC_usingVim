@@ -21,4 +21,4 @@ void push(stack*s,void* addrOfDataToCopy,int* success,int* errorno);
 
 int isEmpty(stack*s);
 
-void pop(stack*s,void** returnedPtr2data,int* success,int* errorno);
+void pop(stack*s,void* addrOfVarToCopyDataTo,int* success,int* errorno);

@@ -1,3 +1,4 @@
+#include<genericStackWithHeaderNode.h>
 int main()
 {
 //remember that we cannot initialize the member variables of a structure, at the time of definition, as those variables don't exist yet.

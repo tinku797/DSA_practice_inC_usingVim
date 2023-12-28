@@ -109,9 +109,9 @@ int x = 241;
 int y = 421;
 int success, errorno;
 push(&s1,&x,&success,&errorno);
-printf("success: %d, errrorno: %d\n",success,errorno);
+printf("success: %d, errorno: %d\n",success,errorno);
 push(&s1,&y,&success,&errorno);
-printf("success: %d, errrorno: %d\n",success,errorno);
+printf("success: %d, errorno: %d\n",success,errorno);
 
 /*
 for(int i=0;i<899;i++)
@@ -124,7 +124,7 @@ while(!isEmpty(&s1))
 {
 int data;
 pop(&s1,&data,&success,&errorno);
-printf("success: %d, errrorno: %d\n",success,errorno);
+printf("success: %d, errorno: %d\n",success,errorno);
 printf("popped data:%d\n",data);
 }
 

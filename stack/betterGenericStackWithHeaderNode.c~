@@ -108,9 +108,9 @@ init(&s1,sizeof(int));
 int x = 241;
 int y = 421;
 int success, errorno;
-push(&s1,&x,success,errorno);
+push(&s1,&x,&success,&errorno);
 printf("success: %d, errrorno: %d\n",success,errorno);
-push(&s1,&y,success,errorno);
+push(&s1,&y,&success,&errorno);
 printf("success: %d, errrorno: %d\n",success,errorno);
 
 /*
