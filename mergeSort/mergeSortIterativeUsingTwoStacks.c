@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<genericStackWithHeaderNode.h>
 
 int intComp(void*a, void*b)
 {
@@ -53,18 +54,52 @@ return 1;
 
 int mergeSort(void*x,void*y,int lb,int ub,int es, int (*func)(void*a,void*b))
 {
-int mid = (lb+ub)/2;
-if(lb<mid)
+typedef struct __LBUB
 {
-//printf("Calling mergeSort for %d,%d\n",lb,mid);
-mergeSort(x,y,lb,mid,es,func);
-}
-if(mid+1<ub)
+int lb;
+int ub;
+}LBUB;
+
+LBUB lbub;
+
+stack s1;
+init(&s1,sizeof(LBUB));
+stack s2;
+init(&s2,sizeof(LBUB));
+
+
+
+//merge sort code starts
+lbub.lb = lb;
+lbub.ub = ub;
+push(&s1,&lbub,NULL,NULL);
+while(!isEmpty(&s1))
 {
-//printf("Calling mergeSort for %d,%d\n",mid+1,ub);
-mergeSort(x,y,mid+1,ub,es,func);
+pop(&s1,&lbub,NULL,NULL);
+push(&s2,&lbub,NULL,NULL);
+int mid = (lbub.lb + lbub.ub)/2;
+if(lbub.lb<mid)
+{
+LBUB lbub1;
+lbub1.lb = lbub.lb;
+lbub1.ub = mid;
+push(&s1,&lbub1,NULL,NULL);
 }
-return merge(x,y,lb,mid,mid+1,ub,es,func);
+if(mid+1<lbub.ub)
+{
+LBUB lbub2; 
+lbub2.lb = mid+1;
+lbub2.ub = lbub.ub;
+push(&s1,&lbub2,NULL,NULL);
+}
+}
+
+while(!isEmpty(&s2))
+{
+pop(&s2,&lbub,NULL,NULL);
+int mid = (lbub.lb+lbub.ub)/2;
+merge(x,y,lbub.lb,mid,mid+1,lbub.ub,es,func);
+}
 }
 
 int main()
