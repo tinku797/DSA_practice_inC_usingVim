@@ -78,19 +78,19 @@ while(!isEmpty(&s1))
 pop(&s1,&lbub,NULL,NULL);
 push(&s2,&lbub,NULL,NULL);
 int mid = (lbub.lb + lbub.ub)/2;
-if(lbub.lb<mid)
+int a = lbub.lb;
+int b = lbub.ub;
+if(a<mid)
 {
-LBUB lbub1;
-lbub1.lb = lbub.lb;
-lbub1.ub = mid;
-push(&s1,&lbub1,NULL,NULL);
+lbub.lb = a;
+lbub.ub = mid;
+push(&s1,&lbub,NULL,NULL);
 }
-if(mid+1<lbub.ub)
+if(mid+1<b)
 {
-LBUB lbub2; 
-lbub2.lb = mid+1;
-lbub2.ub = lbub.ub;
-push(&s1,&lbub2,NULL,NULL);
+lbub.lb = mid+1;
+lbub.ub = b; 
+push(&s1,&lbub,NULL,NULL);
 }
 }
 

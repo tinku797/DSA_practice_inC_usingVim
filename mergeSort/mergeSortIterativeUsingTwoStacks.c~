@@ -73,40 +73,29 @@ init(&s2,sizeof(LBUB));
 lbub.lb = lb;
 lbub.ub = ub;
 push(&s1,&lbub,NULL,NULL);
-printf("Pushed %d,%d into s1\n",lbub.lb,lbub.ub);
 while(!isEmpty(&s1))
 {
-printf("Entered 1st while loop\n");
 pop(&s1,&lbub,NULL,NULL);
 push(&s2,&lbub,NULL,NULL);
-//printf("Pushed %d,%d into s2\n",lbub.lb,lbub.ub);
 int mid = (lbub.lb + lbub.ub)/2;
-printf("%d,%d,%d,%d\n",lbub.lb,mid,mid+1,lbub.ub);
+int a = lbub.lb;
+int b = lbub.ub;
 if(lbub.lb<mid)
 {
-//printf("Calling mergeSort for %d,%d\n",lb,mid);
-printf("Entered lbub.lb<mid if condition\n");
-LBUB lbub1;
-lbub1.lb = lbub.lb;
-lbub1.ub = mid;
-push(&s1,&lbub1,NULL,NULL);
-printf("Pushed %d,%d into s1\n",lbub.lb,lbub.ub);
+lbub.lb = a;
+lbub.ub = mid;
+push(&s1,&lbub,NULL,NULL);
 }
 if(mid+1<lbub.ub)
 {
-//printf("Calling mergeSort for %d,%d\n",mid+1,ub);
-printf("Entered mid+1<lbub if condition\n");
-LBUB lbub2; 
-lbub2.lb = mid+1;
-lbub2.ub = lbub.ub;
-push(&s1,&lbub2,NULL,NULL);
-printf("Pushed %d,%d into s1\n",lbub.lb,lbub.ub);
+lbub.lb = mid+1;
+lbub.ub = ub; 
+push(&s1,&lbub,NULL,NULL);
 }
 }
 
 while(!isEmpty(&s2))
 {
-printf("Entered 2nd while loop\n");
 pop(&s2,&lbub,NULL,NULL);
 int mid = (lbub.lb+lbub.ub)/2;
 merge(x,y,lbub.lb,mid,mid+1,lbub.ub,es,func);
