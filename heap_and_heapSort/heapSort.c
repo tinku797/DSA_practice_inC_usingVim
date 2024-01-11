@@ -23,6 +23,39 @@ else break;
 }
 y++;
 }
+
+//heap sort code
+y = ub;
+while(y>=lb)
+{
+int temp = x[lb];
+x[lb] = x[y];
+x[y] = temp;
+y--;
+
+int ri = lb;
+while(ri<=y)
+{
+int lci = ri*2 + 1;
+int rci = lci + 1;
+int swi;
+if(lci > y) break;
+else if(rci > y) swi = lci; 
+else
+{
+if(x[lci] >= x[rci]) swi = lci;
+else swi = rci;
+}
+if(x[ri]<x[swi])
+{
+int temp = x[ri];
+x[ri] = x[swi];
+x[swi] = temp;
+ri = swi;
+}
+else break;
+}
+}
 return 1;
 }
 
