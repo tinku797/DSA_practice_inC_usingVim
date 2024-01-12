@@ -136,7 +136,7 @@ e*=10;
 f*=10;
 }
 
-//code to reverse the negative part of the array, to get it in ascending order, and multiplying every element with -1.
+//code to reverse the negative part of the array, to get it in ascending order.
 int start = lb;
 int end = lastNegNoIndex;
 while(start<end)
@@ -146,11 +146,6 @@ x[start] = x[end];
 x[end] = temp;
 start++;
 end--;
-}
-for(int i = lb;i<=lastNegNoIndex;i++)
-{
-printf("%d\n",x[i]);
-x[i]*= -1;
 }
 
 printf("Sorting negative numbers done.\n");

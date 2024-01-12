@@ -80,16 +80,12 @@ int firstPosNoIndex = right+1;
 
 if(left!=lb)
 {
-printf("abc1\n");
 //code to find the smallestNegNo number in the array
 int smallestNegNo = x[lb];
 for(int i = lb;i<=lastNegNoIndex;i++)
 {
 if(smallestNegNo > x[i]) smallestNegNo = x[i];
 }
-
-printf("abc2\n");
-
 
 //code to find the number of digits in the smallestNegNo number
 int dc = 1;
@@ -99,7 +95,6 @@ dc++;
 smallestNegNo = smallestNegNo/10;
 }
 
-printf("abc3\n");
 
 //code to create and initialize 10 queues
 Queue queue[10];
@@ -107,8 +102,6 @@ for(int i=0;i<10;i++)
 {
 initQueue(&queue[i]);
 }
-
-printf("abc4\n");
 
 //code to enqueue the values into the queues,based on the place values increasing by a factor of 10, then dequeue into the original array, and repeating this process dc no of times.
 int e = 10;
@@ -120,7 +113,6 @@ for(int j=lb;j<=lastNegNoIndex;j++)
 int placeValue = -1*((x[j]%e)/f);
 enqueue(&queue[placeValue],x[j]);
 }
-printf("Enqueued all the negative numbers to queues.\n");
 int temp = lb;
 for(int k=0;k<10;k++)
 {
@@ -147,8 +139,6 @@ x[end] = temp;
 start++;
 end--;
 }
-
-printf("Sorting negative numbers done.\n");
 
 }
 
