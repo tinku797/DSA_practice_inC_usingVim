@@ -49,6 +49,28 @@ linkedList->start = llNode;
 linkedList->size++;
 }
 
+//code to insert at nth place.
+
+
+//code to delete node at the end.
+
+
+//code to delete node at the start.
+
+
+//code to delete node at nth place.
+
+
+//code to linear search in a linked list.
+
+
+//code to reverse a singly linked list.
+
+
+//code to sort a singly linked list.
+
+
+
 void traverseLL(LL* linkedList)
 {
 LLNode* temp = linkedList->start;

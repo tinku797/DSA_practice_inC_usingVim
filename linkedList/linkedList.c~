@@ -37,6 +37,7 @@ temp = temp->next;
 }
 temp->next = llNode;
 }
+linkedList->size++;
 }
 
 void insertAtStart(LL* linkedList, int data)
@@ -45,7 +46,15 @@ LLNode* llNode = (LLNode*)malloc(sizeof(LLNode));
 llNode->data = data;
 llNode->next = linkedList->start;
 linkedList->start = llNode;
+linkedList->size++;
 }
+
+//code to delete node at the end.
+
+
+//code to delete node at the start.
+
+
 
 void traverseLL(LL* linkedList)
 {
@@ -60,6 +69,7 @@ temp = temp->next;
 int main()
 {
 LL linkedList1;
+initLL(&linkedList1);
 for(int i =0;i<100;i++)
 {
 insertAtEnd(&linkedList1,i);
