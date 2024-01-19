@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int cocktailShakerSort(int* x, int lb, int ub)
+{
+//bubbleSort code acting as skeleton
+int li = lb;
+int ri = ub;
+int turnFlag = 0;
+while(li<ri)
+{
+if(turnFlag == 0)
+{
+int e = li;
+while(e+1<=ri)
+{
+if(x[e]>x[e+1])
+{
+int temp = x[e];
+x[e] = x[e+1];
+x[e+1] = temp;
+}
+e++;
+}
+turnFlag =1;
+ri--;
+}
+else if(turnFlag == 1)
+{
+int e = ri;
+while(e-1>=lb)
+{
+if(x[e-1]>x[e])
+{
+int temp = x[e-1];
+x[e-1] = x[e];
+x[e] = temp;
+}
+e--;
+}
+turnFlag =0;
+li++;
+}
+}
+}
+
+int main()
+{
+int req;
+int i;
+printf("Enter requirement: ");
+scanf("%d",&req);
+int* ptr2arr = (int*)malloc(sizeof(int)*req);
+if(ptr2arr == NULL)
+{
+printf("Cannot allocated memory for array.\n");
+return 0;
+}
+for(i=0;i<req;i++)
+{
+printf("Enter a number: ");
+scanf("%d",&ptr2arr[i]);
+}
+
+cocktailShakerSort(ptr2arr,0,req-1);
+
+for(i=0;i<req;i++)
+{
+printf("%d\n",ptr2arr[i]);
+}
+return 0;
+}
