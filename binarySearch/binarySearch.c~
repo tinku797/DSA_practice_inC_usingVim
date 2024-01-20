@@ -8,7 +8,7 @@ if(lb == ub)
 if(x[lb] != data) return -1;
 else return lb;
 }
-int mid = (ub+lb)/2;
+int mid = lb + (ub-lb)/2;
 if(x[mid] == data)
 {
 return mid;
