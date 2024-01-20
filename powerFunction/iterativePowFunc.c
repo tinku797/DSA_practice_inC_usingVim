@@ -1,0 +1,25 @@
+#include<stdio.h>
+
+int iterativePower(int base, int exp)
+{
+int i = 1;
+int j = 0;
+while(j<exp)
+{
+i = i*base;
+j++;
+}
+return i;
+}
+
+int main()
+{
+int base, exp;
+printf("Enter the base: ");
+scanf("%d",&base);
+printf("Enter the exponent: ");
+scanf("%d",&exp);
+int result = iterativePower(base,exp);
+printf("Result is: %d\n",result);
+return 0;
+}
