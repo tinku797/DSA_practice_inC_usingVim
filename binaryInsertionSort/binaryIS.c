@@ -24,6 +24,7 @@ while(f>=posToInsertAt)
 x[f+1] = x[f];
 f--;
 }
+//inserting element at the relevant position.
 x[f+1] = temp;
 e++;
 }

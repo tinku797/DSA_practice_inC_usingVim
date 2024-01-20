@@ -14,8 +14,8 @@ int li = f;
 while(si<=li)
 {
 int mid = si + (li-si)/2;
-if(x[mid] == temp || x[mid]<temp) li = mid-1;
-else if(x[mid]>temp) si = mid+1; 
+if(x[mid] == temp || x[mid]<temp) si = mid+1;
+else if(x[mid]>temp) li = mid-1; 
 }
 int posToInsertAt = si;
 //code to shift all the elements after from  the insertion index to e-1 to the right
