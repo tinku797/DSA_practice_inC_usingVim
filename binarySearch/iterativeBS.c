@@ -3,11 +3,11 @@
 
 int binarySearch(int* x, int lb, int ub, int data)
 {
-if(lb == ub) return -1;
+if(lb == ub) return 0;
 int mid = (ub+lb)/2;
 if(x[mid] == data)
 {
-return mid;
+return 1;
 }
 else if(x[mid]>data)
 {
@@ -45,9 +45,9 @@ scanf("%d",&data);
 
 resultOfBS = binarySearch(ptr2arr,0,req-1,data);
 
-if(resultOfBS != -1)
+if(resultOfBS == 1)
 {
-printf("Number found at index %d\n",resultOfBS);
+printf("Number found\n");
 }
 else printf("Number not found\n");
 return 0;
