@@ -3,7 +3,11 @@
 
 int binarySearch(int* x, int lb, int ub, int data)
 {
-if(lb == ub) return -1;
+if(lb == ub)
+{
+if(x[lb] != data) return -1;
+else return lb;
+}
 int mid = (ub+lb)/2;
 if(x[mid] == data)
 {

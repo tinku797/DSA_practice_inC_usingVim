@@ -3,20 +3,22 @@
 
 int binarySearch(int* x, int lb, int ub, int data)
 {
-if(lb == ub) return 0;
-int mid = (ub+lb)/2;
-if(x[mid] == data)
+int si = lb;
+int li = ub;
+while(si<=li)
 {
-return 1;
-}
+int mid = si + (li-si)/2;
+if(x[mid] == data) return mid;
 else if(x[mid]>data)
 {
-return binarySearch(x,lb,mid-1,data);
+li = mid-1;
 }
 else if(x[mid]<data)
 {
-return binarySearch(x,mid+1,ub,data);
+si = mid+1;
 }
+}
+return -1;
 }
 
 int main()
@@ -45,9 +47,9 @@ scanf("%d",&data);
 
 resultOfBS = binarySearch(ptr2arr,0,req-1,data);
 
-if(resultOfBS == 1)
+if(resultOfBS != -1)
 {
-printf("Number found\n");
+printf("Number found at index %d\n",resultOfBS);
 }
 else printf("Number not found\n");
 return 0;
