@@ -50,13 +50,79 @@ linkedList->size++;
 }
 
 //code to insert at nth place.
+void insertAtnthPlace(LL* linkedList, int data, int n)
+{
+if(n==1)
+{
+insertAtStart(linkedList, data);
+return;
+}
+LLNode* temp = linkedList->start;
+int count = 1;
+while(count<=n-2 && temp != NULL)
+{
+temp = temp->next;
+count++;
+}
+if(count != n-1 || temp == NULL) //means cannot insert at nth place, cause there are not n-1 nodes in the LL to begin with.
+{
+printf("Cannot insert at nth place, cause there are not n-1 nodes in the LL to begin with.\n");
+return;
+}
+LLNode* llNode = (LLNode*)malloc(sizeof(LLNode));
+llNode->data = data;
+llNode->next = temp->next;
+temp->next = llNode;
+linkedList->size++;
+}
 
 
 //code to delete node at the end.
+void deleteNodeAtEnd(LL* linkedList)
+{
+if(linkedList->start != NULL)
+{
+LLNode* temp = linkedList->start;
+LLNode* tempPrev = NULL;
+while(temp->next != NULL)
+{
+tempPrev = temp;
+temp = temp->next;
+}
+if(tempPrev == NULL) //it means that there is only one node in the linked list
+{
+linkedList->start = NULL;
+free(temp);
+}
+else //it means there are atleast 2 node in the linked list
+{
+tempPrev->next = NULL;
+free(temp);
+}
+linkedList->size--;
+}
+else
+{
+printf("cannot delete node, since linked list is already empty.\n");
+}
+}
 
 
 //code to delete node at the start.
-
+void deleteNodeAtStart(LL* linkedList)
+{
+if(linkedList->start != NULL)
+{
+LLNode* temp = linkedList->start;
+linkedList->start = linkedList->start->next;
+linkedList->size--;
+free(temp);
+}
+else
+{
+printf("cannot delete node, since linked list is already empty.\n");
+}
+}
 
 //code to delete node at nth place.
 
@@ -85,10 +151,20 @@ int main()
 {
 LL linkedList1;
 initLL(&linkedList1);
-for(int i =0;i<100;i++)
+printf("Insertion nodes into LL\n");
+for(int i =0;i<10;i++)
 {
 insertAtEnd(&linkedList1,i);
 }
+traverseLL(&linkedList1);
+printf("deleting from start\n");
+deleteNodeAtStart(&linkedList1);
+traverseLL(&linkedList1);
+printf("deleting from end\n");
+deleteNodeAtEnd(&linkedList1);
+traverseLL(&linkedList1);
+printf("inserting at nth place\n");
+insertAtnthPlace(&linkedList1,10000,10);
 traverseLL(&linkedList1);
 return 0;
 }
