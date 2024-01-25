@@ -76,6 +76,46 @@ temp->next = llNode;
 linkedList->size++;
 }
 
+//code to insert at correct place in sorted ascending order
+void insertInSortedOrder(LL* linkedList, int data)
+{
+LLNode* temp = linkedList->start;
+LLNode* beforeTemp = NULL;
+LLNode* llNode = (LLNode*)malloc(sizeof(LLNode));
+llNode->data = data;
+while(temp != NULL && temp->data <= data)
+{
+beforeTemp = temp;
+temp = temp->next;
+}
+//now, there can be no elements in the linkedList, or temp has reached NULL after the end of the linkedList
+if(temp == NULL && beforeTemp == NULL) //it means the LL is empty, and we are inserting the first element.
+{
+linkedList->start = llNode;
+llNode->next = NULL;
+linkedList->size++;
+}
+else if(temp != NULL && beforeTemp == NULL) //it means we are inserting at he beginning of a non-empty list.
+{
+llNode->next = linkedList->start;
+linkedList->start = llNode;
+linkedList->size++;
+}
+else if(temp == NULL && beforeTemp != NULL) //it means we are inserting at the end of the list.
+{
+beforeTemp->next = llNode;
+llNode->next = NULL;
+linkedList->size++;
+}
+else if(temp != NULL && beforeTemp != NULL) //it means we are inserting somewhere in the middle of the list.
+{
+llNode->next = beforeTemp->next;
+beforeTemp->next = llNode;
+linkedList->size++;
+}
+return;
+}
+
 
 //code to delete node at the end.
 void deleteNodeAtEnd(LL* linkedList)
@@ -137,6 +177,7 @@ printf("cannot delete node, since linked list is already empty.\n");
 
 
 
+
 void traverseLL(LL* linkedList)
 {
 LLNode* temp = linkedList->start;
@@ -162,6 +203,9 @@ deleteNodeAtStart(&linkedList1);
 traverseLL(&linkedList1);
 printf("deleting from end\n");
 deleteNodeAtEnd(&linkedList1);
+traverseLL(&linkedList1);
+printf("inserting in sorted order.\n");
+insertInSortedOrder(&linkedList1,-1);
 traverseLL(&linkedList1);
 printf("inserting at nth place\n");
 insertAtnthPlace(&linkedList1,10000,10);

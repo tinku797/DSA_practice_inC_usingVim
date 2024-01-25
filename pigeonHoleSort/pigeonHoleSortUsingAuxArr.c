@@ -3,7 +3,35 @@
 
 int pigeonHoleSort(int* x, int lb, int ub)
 {
-
+int min = lb;
+int max = lb;
+for(int i=0;i<=ub;i++)
+{
+if(min>x[i]) min = x[i];
+if(max<x[i]) max = x[i];
+}
+int rangeOfAuxArr = max-min+1;
+int* auxArr = (int*)malloc(sizeof(int)*rangeOfAuxArr);
+for(int i=0;i<rangeOfAuxArr;i++)
+{
+auxArr[i] = 0;
+}
+for(int i=lb;i<=ub;i++)
+{
+auxArr[x[i]-min]++;
+}
+int index = 0;
+for(int i=0;i<rangeOfAuxArr;i++)
+{
+while(auxArr[i] != 0)
+{
+x[index] = i;
+index++;
+auxArr[i]--;
+}
+}
+free(auxArr);
+return 0;
 }
 
 int main()

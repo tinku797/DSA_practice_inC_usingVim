@@ -97,7 +97,7 @@ linkedList->size++;
 }
 else if(temp != NULL && beforeTemp == NULL) //it means we are inserting at he beginning of a non-empty list.
 {
-llNode->next = linkedList->start->next;
+llNode->next = linkedList->start;
 linkedList->start = llNode;
 linkedList->size++;
 }
@@ -113,6 +113,7 @@ llNode->next = beforeTemp->next;
 beforeTemp->next = llNode;
 linkedList->size++;
 }
+return;
 }
 
 
@@ -187,27 +188,63 @@ temp = temp->next;
 }
 }
 
+
+int pigeonHoleSort(int* x, int lb, int ub)
+{
+int min = lb;
+int max = lb;
+for(int i=0;i<=ub;i++)
+{
+if(min>x[i]) min = x[i];
+if(max<x[i]) max = x[i];
+}
+int rangeOfAuxArr = max-min+1;
+LL arrOfLL[rangeOfAuxArr];
+for(int i=0;i<rangeOfAuxArr;i++)
+{
+initLL(&arrOfLL[i]);
+}
+for(int i=lb;i<=ub;i++)
+{
+insertAtEnd(&arrOfLL[x[i]-min],x[i]);
+}
+int index = 0;
+for(int i=0;i<rangeOfAuxArr;i++)
+{
+LLNode* temp = arrOfLL[i].start;
+while(temp != NULL)
+{
+x[index] = temp->data;
+index++;
+temp = temp->next;
+}
+}
+return 0;
+}
+
 int main()
 {
-LL linkedList1;
-initLL(&linkedList1);
-printf("Insertion nodes into LL\n");
-for(int i =0;i<10;i++)
+int req;
+int i;
+printf("Enter requirement: ");
+scanf("%d",&req);
+int* ptr2arr = (int*)malloc(sizeof(int)*req);
+if(ptr2arr == NULL)
 {
-insertAtEnd(&linkedList1,i);
+printf("Cannot allocated memory for array.\n");
+return 0;
 }
-traverseLL(&linkedList1);
-printf("deleting from start\n");
-deleteNodeAtStart(&linkedList1);
-traverseLL(&linkedList1);
-printf("deleting from end\n");
-deleteNodeAtEnd(&linkedList1);
-traverseLL(&linkedList1);
-printf("inserting in sorted order.\n");
-insertInSortedOrder(&linkedList1,-1);
-traverseLL(&linkedList1);
-printf("inserting at nth place\n");
-insertAtnthPlace(&linkedList1,10000,10);
-traverseLL(&linkedList1);
+for(i=0;i<req;i++)
+{
+printf("Enter a number: ");
+scanf("%d",&ptr2arr[i]);
+}
+
+pigeonHoleSort(ptr2arr,0,req-1);
+
+for(i=0;i<req;i++)
+{
+printf("%d\n",ptr2arr[i]);
+}
 return 0;
 }
