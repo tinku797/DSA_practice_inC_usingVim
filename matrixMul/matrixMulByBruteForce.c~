@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main()
+{
+int x[4][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+int y[4][4] = {{10,20,30,40},{50,60,70,80},{90,100,110,120},{130,140,150,160}};
+int z[4][4];
+for(int e=0;e<4;e++)
+{
+for(int f=0;f<4;f++)
+{
+int temp = 0;
+for(int g=0;g<4;g++)
+{
+temp += x[e][g]*y[g][f];
+}
+z[e][f] = temp;
+}
+}
+
+for(int i=0;i<4;i++)
+{
+for(int j=0;j<4;j++)
+{
+printf("%5d ",x[i][j]);
+}
+printf("\n");
+}
+return 0;
+}
